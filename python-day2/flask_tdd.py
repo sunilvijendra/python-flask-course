@@ -8,12 +8,19 @@ api = Api(app)
 
 class SampleApi(Resource):
     def get(self):
-        return {'test' : 123 }
+        return {'test' : 1234 }
+
+class Employee(Resource):
+    def get(self):
+        return {'id' : 25045, 'name': "Ironman" }
 
 api.add_resource(SampleApi, '/')
+api.add_resource(Employee, '/avengers')
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+# TEST CODE
 
 @pytest.fixture
 def client():
@@ -26,4 +33,11 @@ def test_SampleApi_get(client):
     rv = client.get('/')
 
     print(rv.json)
-    assert rv.json['test'] == 123
+    assert rv.json['test'] == 1234
+
+def test_Employee_test1(client):
+    rv = client.get('/avengers')
+
+    print (rv.json)
+    assert rv.json['id'] == 25045
+    assert rv.json['name'] == 'Ironman'

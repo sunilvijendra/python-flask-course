@@ -50,7 +50,7 @@ class Login(Resource):
         return {'success' : True}
 
 api.add_resource(Login, '/login')
-api.add_resource(UserResource, '/user')
+api.add_resource(UserResource, '/users')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5001)
