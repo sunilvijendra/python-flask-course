@@ -7,6 +7,8 @@ class Vehicle:
     def display(self):
         print("display; Vehicle")
 
+    def test(self):
+        print("Vehicle: test")
 
 class Truck(Vehicle):
     def __init__(self, engine_number, chassis_number, regn_no, num_wheels):
@@ -27,3 +29,4 @@ regn_no = 'ka-04-ma-1111'
 num_wheels = 4
 truck = Truck(engine_number, chassis_number, regn_no, num_wheels)
 truck.display()
+truck.test()

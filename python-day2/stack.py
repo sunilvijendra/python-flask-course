@@ -1,4 +1,5 @@
 class Stack:
+    temp = 5
     def __init__(self):
         self.tos = -1
         self.arr = []
