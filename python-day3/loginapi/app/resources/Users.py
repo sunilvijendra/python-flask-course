@@ -1,7 +1,8 @@
 from flask_restful import Resource, Api
 from flask_restful import reqparse
 
-from loginapi.src.models.UserModel import UserModel
+from loginapi.app.models.UserModel import User
+from loginapi.app import db
 
 parser = reqparse.RequestParser()
 parser.add_argument('userName')
@@ -9,15 +10,17 @@ parser.add_argument('passWord')
 
 userList = []
 
-class UsersResource(Resource):
+
+class Users(Resource):
 
     def get(self):
         return ([user.__dict__ for user in userList])
 
     def post(self):
         args = parser.parse_args()
-        user = UserModel(1, args['userName'], args['passWord'], 1);
+        user = User(username=args['userName'], password=args['passWord']);
 
-        userList.append(user)
+        db.session.add(user)
+        db.commit()
 
         return user.__dict__
